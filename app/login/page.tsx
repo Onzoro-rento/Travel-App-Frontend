@@ -1,14 +1,23 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import { AiFillGoogleCircle } from "react-icons/ai";
 import { FaPlaneUp } from "react-icons/fa6";
+import { createClient } from "@/lib/supabase/client";
+
 export default function LoginPage() {
-  const [loading] = useState(false);
-  const router = useRouter();
-  const handleLogin = () => {
-    router.push("/");
+  const [loading, setLoading] = useState(false);
+
+  const handleLogin = async () => {
+    setLoading(true);
+    const supabase = createClient();
+    await supabase.auth.signInWithOAuth({
+      provider: "google",
+      options: {
+        redirectTo: `${location.origin}/auth/callback`,
+      },
+    });
+    setLoading(false);
   };
 
   return (
@@ -27,6 +36,7 @@ export default function LoginPage() {
           disabled={loading}
           className="w-full flex items-center justify-center gap-3 px-5 py-3 border border-gray-200 rounded-xl bg-white text-[15px] font-medium text-gray-900 hover:bg-gray-50 transition-colors shadow-sm disabled:cursor-wait"
           onClick={handleLogin}
+          type="button"
         >
           {loading ? (
             <div className="w-5 h-5 border-2 border-gray-200 border-t-blue-500 rounded-full spinner" />
