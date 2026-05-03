@@ -5,7 +5,8 @@ import { useRouter } from "next/navigation";
 import { AiFillGoogleCircle } from "react-icons/ai";
 import { FaPlaneUp } from "react-icons/fa6";
 export default function LoginPage() {
-    const [loading, setLoading] = useState(false);
+
+    const [loading, ] = useState(false);
   const router = useRouter();
   const handleLogin = () => {
     router.push("/");

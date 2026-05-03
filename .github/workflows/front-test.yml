@@ -2,7 +2,7 @@ name: Front Test
 
 on:
   pull_request:
-    branches: [main, dev]
+    branches: [main, develop]
     types:
       - opened
       - synchronize
