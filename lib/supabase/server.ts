@@ -13,13 +13,13 @@ export const createClient = async () => {
         setAll: (cookiesToSet) => {
           try {
             cookiesToSet.forEach(({ name, value, options }) =>
-              cookieStore.set(name, value, options)
+              cookieStore.set(name, value, options),
             );
           } catch {
             // Server Componentから呼ばれた場合は無視（middleware側で更新される）
           }
         },
       },
-    }
+    },
   );
 };
