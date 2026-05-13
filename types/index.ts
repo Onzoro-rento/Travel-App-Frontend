@@ -13,7 +13,7 @@ export interface Candidate {
 
 export interface Trip {
   id: number;
-  name: string;
+  title: string;
   startDate: string | null;
   endDate: string | null;
   note: string | null;

@@ -1,12 +1,16 @@
-import Header from "@/components/frame/Header";
+import { Suspense } from "react";
+import { tripAPI } from "@/lib/api/trip";
+import TripListView from "@/components/TripListView";
+
+async function TripList() {
+  const trips = await tripAPI.getTrips();
+  return <TripListView trips={trips} />;
+}
 
 export default function Home() {
-  // 将来ここでtrip一覧をfetch（SSR）
-  // const trips = await fetchTrips();
-
   return (
-    <div className="flex min-h-screen flex-col">
-      <Header />
-    </div>
+    <Suspense>
+      <TripList />
+    </Suspense>
   );
 }
