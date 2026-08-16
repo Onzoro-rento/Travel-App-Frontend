@@ -2,7 +2,7 @@
 "use client";
 
 import { Trip } from "@/types";
-import { EllipsisVertical,MapPin, Calendar } from 'lucide-react';
+import { EllipsisVertical,Calendar } from 'lucide-react';
 import { formatDateShort } from "@/lib/utils";
 import ImgPlaceholder from "@/components/ui/ImgPlaceholder";
 
@@ -15,6 +15,14 @@ export default function TripCard({ trip, onClick }: Props) {
   return (
     <div
       onClick={onClick}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          onClick();
+        }
+      }}
       className="bg-white rounded-xl overflow-hidden border border-gray-200 cursor-pointer transition-all duration-200 hover:border-gray-300 hover:shadow-md w-[300px]"
     >
       {/* Cover */}
